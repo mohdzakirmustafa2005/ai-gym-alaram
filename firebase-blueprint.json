@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and fitness stats",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "xp": { "type": "number" },
+        "level": { "type": "number" },
+        "streak": { "type": "number" },
+        "lastWakeUp": { "type": "string", "format": "date-time" },
+        "goals": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["uid", "email"]
+    },
+    "Alarm": {
+      "title": "Alarm",
+      "description": "Smart alarm settings",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "time": { "type": "string" },
+        "days": { "type": "array", "items": { "type": "number" } },
+        "label": { "type": "string" },
+        "difficulty": { "type": "string", "enum": ["easy", "medium", "hard", "biometric"] },
+        "enabled": { "type": "boolean" },
+        "tone": { "type": "string" }
+      },
+      "required": ["userId", "time", "difficulty"]
+    },
+    "ActivityLog": {
+      "title": "ActivityLog",
+      "description": "Log of wake-up events and snooze behavior",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "type": { "type": "string", "enum": ["wake", "snooze", "missed"] },
+        "challengeSolved": { "type": "boolean" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/alarms/{alarmId}": {
+      "schema": "Alarm",
+      "description": "User alarms"
+    },
+    "/activityLogs/{logId}": {
+      "schema": "ActivityLog",
+      "description": "User activity logs"
+    }
+  }
+}

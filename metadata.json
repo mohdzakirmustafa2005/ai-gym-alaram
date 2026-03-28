@@ -1,0 +1,5 @@
+{
+  "name": "GymAlarm AI Pro",
+  "description": "Smart AI-powered gym alarm with gamification, fitness tracking, and AI coaching.",
+  "requestFramePermissions": ["camera", "notification", "publickey-credentials-get"]
+}
